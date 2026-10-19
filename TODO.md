@@ -1,0 +1,7 @@
+# ToDo
+
+- [x] **Responsive branded landing page:** Create a beautiful, modern, aesthetic responsive landing page for HeatMechanics, with a sober/cool visual direction inspired by https://www.hae.works/ and the user's supplied HeatMechanics logo. Do not use a man's picture. Include a branded hero and clear service-focused calls to action.
+- [x] **Complete service presentation:** Present all requested services: Boiler Repair & Servicing; Boiler Installation & Replacement; Gas Safety Checks / CP12 Certificates; General Plumbing; Air Conditioning Installation & Servicing; Unvented Cylinder Installation (Part G); Commercial Gas & Catering Equipment.
+- [x] **Summer and winter themes:** Include two switchable seasonal themes, one for summer and one for winter, with a user-accessible switch between them. Reflect heating/cooling seasonality while keeping the requested sober colors.
+- [x] **Modern interaction and accessibility:** Include tasteful animations and modern layouts/UI; make the page responsive and the theme/navigation interactions accessible, with reduced-motion behavior.
+- [x] **Trust, service area and quote CTA:** Include trust/qualification messaging and a service-area/contact call-to-action section for requesting a quote or booking an engineer. Do not invent a phone number, email, precise service area, review, award, or accreditation; clearly explain that a contact destination must be connected before an enquiry form can transmit a submission.

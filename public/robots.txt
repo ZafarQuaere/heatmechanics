@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# No sitemap yet. Add one when the permanent domain is chosen.

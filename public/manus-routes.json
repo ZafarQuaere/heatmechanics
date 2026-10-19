@@ -1,0 +1,14 @@
+{
+  "routes": [
+    { "path": "/", "title": "HeatMechanics | Gas engineering, heating and air conditioning" },
+    { "path": "/services/boiler-repair-servicing", "title": "Gas boiler repair and servicing | HeatMechanics" },
+    { "path": "/services/boiler-installation-replacement", "title": "Boiler installation and replacement | HeatMechanics" },
+    { "path": "/services/gas-safety-checks", "title": "Landlord gas safety certificate | HeatMechanics" },
+    { "path": "/services/general-plumbing", "title": "General plumbing repairs | HeatMechanics" },
+    { "path": "/services/air-conditioning", "title": "Air conditioning installation and servicing | HeatMechanics" },
+    { "path": "/services/unvented-cylinder-installation", "title": "Unvented cylinder installation | HeatMechanics" },
+    { "path": "/services/commercial-gas-catering", "title": "Commercial gas and catering equipment | HeatMechanics" },
+    { "path": "/guides", "title": "Guides and common questions | HeatMechanics" },
+    { "path": "/contact", "title": "Request a quote | HeatMechanics" }
+  ]
+}
