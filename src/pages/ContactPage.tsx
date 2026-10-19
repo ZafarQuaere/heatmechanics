@@ -1,4 +1,5 @@
 import { ContactSection } from '../components/ContactSection';
+import { whatsapp } from '../content/site';
 
 export function ContactPage() {
   return (
@@ -6,7 +7,7 @@ export function ContactPage() {
       <ContactSection
         headingLevel="h1"
         title={<>Request<br /><span>a quote.</span></>}
-        intro="Tell us the service you need, whether it is a home or a business, and what is happening. There is no phone number on this site yet, and this form does not send until HeatMechanics connects a contact destination."
+        intro={`Tell us the service you need, whether it is a home or a business, and what is happening. You can also message HeatMechanics on WhatsApp at ${whatsapp.display}. This form does not send until HeatMechanics connects a contact destination.`}
       />
     </main>
   );

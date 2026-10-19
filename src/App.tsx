@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router';
-import { getPageMeta } from './content/site';
+import { getPageMeta, whatsapp } from './content/site';
 import { Icon } from './icons';
 import { ContactPage } from './pages/ContactPage';
 import { GuidesPage } from './pages/GuidesPage';
@@ -125,6 +125,9 @@ function App() {
         </div>
         <div className="footer-bottom section-wrap"><span>© {new Date().getFullYear()} HeatMechanics</span><span>Comfort, considered.</span><a href="#top">Back to the top ↑</a></div>
       </footer>
+      <a className="whatsapp-button" href={whatsapp.href} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+        <Icon name="whatsapp" size={28} />
+      </a>
     </div>
   );
 }

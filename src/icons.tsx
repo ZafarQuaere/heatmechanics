@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-export type IconName = 'arrow' | 'boiler' | 'certificate' | 'pipe' | 'snowflake' | 'cylinder' | 'catering' | 'sun' | 'spark' | 'shield' | 'home' | 'building' | 'check' | 'menu' | 'close' | 'leaf' | 'phone' | 'thermometer';
+export type IconName = 'arrow' | 'boiler' | 'certificate' | 'pipe' | 'snowflake' | 'cylinder' | 'catering' | 'sun' | 'spark' | 'shield' | 'home' | 'building' | 'check' | 'menu' | 'close' | 'leaf' | 'phone' | 'thermometer' | 'whatsapp';
 
 export function Icon({ name, size = 20, className = '' }: { name: IconName; size?: number; className?: string }) {
   const common = { width: size, height: size, viewBox: '0 0 24 24', fill: 'none', stroke: 'currentColor', strokeWidth: 1.7, strokeLinecap: 'round' as const, strokeLinejoin: 'round' as const, 'aria-hidden': true as const, className };
@@ -23,6 +23,7 @@ export function Icon({ name, size = 20, className = '' }: { name: IconName; size
     leaf: <><path d="M20 4c-9 0-14 4-14 10a6 6 0 0 0 6 6c6 0 10-5 8-16Z" /><path d="M4 21c3-5 7-8 12-11" /></>,
     phone: <><path d="M7 3h3l1.5 4-2 1.5a14 14 0 0 0 6 6L17 13l4 1.5v3A3.5 3.5 0 0 1 17.5 21C9 20.5 3.5 15 3 6.5A3.5 3.5 0 0 1 7 3Z" /></>,
     thermometer: <><path d="M14 14.7V5a3 3 0 0 0-6 0v9.7a5 5 0 1 0 6 0Z" /><path d="M11 11v7" /><circle cx="11" cy="18" r="1" /></>,
+    whatsapp: <><path d="M12 20.2a8.2 8.2 0 1 0-7.1-4.1L3.6 20.4l4.4-1.1A8.2 8.2 0 0 0 12 20.2Z" /><path d="M9.1 10.1c.2 1.5 1.5 2.9 3 3.6l1-.7c.2-.1.5 0 .6.2l.6 1c.1.2 0 .5-.2.6-.9.5-2 .2-2.8-.5-.9-.8-1.5-2-1.3-3.2.1-.4.4-.6.8-.6.2 0 .4.2.5.4Z" /></>,
   };
   return <svg {...common}>{paths[name]}</svg>;
 }

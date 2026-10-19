@@ -31,6 +31,11 @@ export type Guide = {
   related: string[];
 };
 
+export const whatsapp = {
+  display: '+44 7424 082283',
+  href: 'https://wa.me/447424082283',
+};
+
 export const services: Service[] = [
   {
     slug: 'boiler-repair-servicing',
@@ -368,7 +373,7 @@ export const guides: Guide[] = [
     question: 'What happens when you use the enquiry form?',
     paragraphs: [
       'The form asks for your name, email, postcode, the service, and a short description of the job. Nothing is sent. The form says so again when you submit it. HeatMechanics needs a contact destination connected before an enquiry can be received.',
-      'There is no phone number and no stated response time on this site. Include whether the property is a home or a business, and what is happening, so the job is clear once a destination is connected.',
+      `You can message HeatMechanics on WhatsApp at ${whatsapp.display}. There is no stated response time on this site. Include whether the property is a home or a business, and what is happening, so the job is clear once a destination is connected.`,
     ],
     related: ['boiler-repair-servicing', 'gas-safety-checks'],
   },
