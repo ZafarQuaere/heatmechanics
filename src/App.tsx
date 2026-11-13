@@ -113,18 +113,33 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-top section-wrap">
-          <Brand footer />
-          <p>Warm winters. Cool summers.<br />Gas engineering, heating and air conditioning.</p>
-          <div className="footer-links">
-            <Link to="/#services">Services</Link>
-            <Link to="/#approach">About us</Link>
-            <Link to="/#coverage">Areas we cover</Link>
-            <Link to="/guides" aria-current={location.pathname === '/guides' ? 'page' : undefined}>Guides</Link>
-            <Link to="/contact" aria-current={location.pathname === '/contact' ? 'page' : undefined}>Start an enquiry</Link>
+          <div className="footer-intro">
+            <Brand footer />
+            <p>Considered care for heat, water and air.<br />For homes and businesses across London.</p>
           </div>
-          <a className="back-top" href="#top" aria-label="Back to top"><Icon name="arrow" size={18} /></a>
+          <nav className="footer-navigation" aria-label="Footer navigation">
+            <h2>Explore</h2>
+            <div className="footer-links">
+              <Link to="/#services">Services</Link>
+              <Link to="/#approach">About us</Link>
+              <Link to="/#coverage">Areas we cover</Link>
+              <Link to="/guides" aria-current={location.pathname === '/guides' ? 'page' : undefined}>Guides</Link>
+              <Link to="/contact" aria-current={location.pathname === '/contact' ? 'page' : undefined}>Start an enquiry</Link>
+            </div>
+          </nav>
+          <div className="footer-contact">
+            <h2>Let’s talk</h2>
+            <a className="footer-phone" href={business.phoneHref}>{business.phone}</a>
+            <a href={business.emailHref}>{business.email}</a>
+            <p>Registered office</p>
+            <address>{business.address}</address>
+          </div>
         </div>
-        <div className="footer-bottom section-wrap"><span>© {new Date().getFullYear()} {business.name}</span><span>{business.website}</span><a href="#top">Back to the top ↑</a></div>
+        <div className="footer-bottom section-wrap">
+          <span>© {new Date().getFullYear()} {business.name}</span>
+          <span>South London roots. London-wide reach.</span>
+          <a className="back-top" href="#top">Back to top <Icon name="arrow" size={16} /></a>
+        </div>
       </footer>
       <a className="whatsapp-button" href={whatsapp.href} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <Icon name="whatsapp" size={28} />
