@@ -5,7 +5,7 @@ export function NotFoundPage() {
     <main id="top" className="services-section section-wrap">
       <header className="section-heading" data-reveal>
         <div>
-          <div className="eyebrow"><span className="eyebrow-line" /> HEATMECHANICS</div>
+          <div className="eyebrow"><span className="eyebrow-line" /> QZ ENGINEERS</div>
           <h1>We can’t find<br /><span>that page.</span></h1>
         </div>
         <p>The address does not match a page on this site.</p>

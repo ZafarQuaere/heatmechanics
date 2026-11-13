@@ -9,3 +9,13 @@
 
 - Added `docs/PROJECT_OVERVIEW.md` as the project context for the HeatMechanics landing page: stack, sections, services, seasonal theme, and the unconnected enquiry form.
 - Added crawlable service, guide, and contact pages for the seven existing services. Towns, reviews, qualifications, and emergency cover stay out until those facts are supplied.
+
+## 2026-11-13
+
+- Ran the project locally and verified the existing build; reviewed the client's shared conversation and wrote `docs/CLIENT_UPDATE_PLAN.md`.
+- Implemented the authorised QZ Engineers rebrand while retaining the logo, favicon, existing routes, seasonal design, storage key and hosting configuration.
+- Added supplied contact details, credentials, About Us copy, London coverage, expanded plumbing/gas/cylinder content and one underfloor-heating/controls/power-flushing page.
+- Replaced the placeholder form with explicit WhatsApp message preparation, review/send instructions, fallback link and call/email alternatives.
+- Added four inspected conversation reference images. Excluded the underfloor photo after discovering workers at full resolution; used the thermostat photo instead.
+- Added business structured data and updated titles, descriptions and route manifest. Build prerenders eleven pages.
+- Checked desktop/mobile behaviour, seasonal persistence, preselection, validation and encoded WhatsApp handoff with dummy data. No message was sent and no production deployment was performed.

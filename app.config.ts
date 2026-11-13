@@ -1,3 +1,3 @@
 export default {
-  logoUrl: "/heatmechanics-logo.png",
+  logoUrl: "/qz-engineers-logo.png",
 };

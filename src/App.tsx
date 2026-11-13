@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, Route, Routes, useLocation } from 'react-router';
-import { getPageMeta, whatsapp } from './content/site';
+import { business, businessSchema, getPageMeta, whatsapp } from './content/site';
+import { Brand } from './components/Brand';
 import { Icon } from './icons';
 import { ContactPage } from './pages/ContactPage';
 import { GuidesPage } from './pages/GuidesPage';
@@ -71,6 +72,7 @@ function App() {
 
   return (
     <div className="site-shell" data-season={season}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema).replace(/</g, '\\u003c') }} />
       <div className="announcement-bar">
         <span className="pulse-dot" />
         <span>Gas engineering <i>·</i> heating <i>·</i> air conditioning</span>
@@ -78,15 +80,13 @@ function App() {
       </div>
 
       <header className="site-header">
-        <Link className="brand-lockup" to="/" aria-label="HeatMechanics home" onClick={closeMenu}>
-          <img src="/heatmechanics-logo.png" alt="HeatMechanics — Gas Engineering & Air Conditioning" />
-        </Link>
+        <Brand onClick={closeMenu} />
         <button className="mobile-menu-button" type="button" aria-label={menuOpen ? 'Close navigation' : 'Open navigation'} aria-expanded={menuOpen} onClick={() => setMenuOpen(!menuOpen)}>
           <Icon name={menuOpen ? 'close' : 'menu'} size={23} />
         </button>
         <nav className={`main-nav ${menuOpen ? 'is-open' : ''}`} aria-label="Main navigation">
           <Link to="/#services" onClick={closeMenu}>Services</Link>
-          <Link to="/#approach" onClick={closeMenu}>Our approach</Link>
+          <Link to="/#approach" onClick={closeMenu}>About us</Link>
           <Link to="/guides" onClick={closeMenu} aria-current={location.pathname === '/guides' ? 'page' : undefined}>Guides</Link>
           <Link to="/contact" onClick={closeMenu} aria-current={location.pathname === '/contact' ? 'page' : undefined}>Contact</Link>
         </nav>
@@ -113,17 +113,18 @@ function App() {
 
       <footer className="site-footer">
         <div className="footer-top section-wrap">
-          <Link className="footer-brand" to="/"><img src="/heatmechanics-logo.png" alt="HeatMechanics" /></Link>
+          <Brand footer />
           <p>Warm winters. Cool summers.<br />Gas engineering, heating and air conditioning.</p>
           <div className="footer-links">
             <Link to="/#services">Services</Link>
-            <Link to="/#approach">Our approach</Link>
+            <Link to="/#approach">About us</Link>
+            <Link to="/#coverage">Areas we cover</Link>
             <Link to="/guides" aria-current={location.pathname === '/guides' ? 'page' : undefined}>Guides</Link>
             <Link to="/contact" aria-current={location.pathname === '/contact' ? 'page' : undefined}>Start an enquiry</Link>
           </div>
           <a className="back-top" href="#top" aria-label="Back to top"><Icon name="arrow" size={18} /></a>
         </div>
-        <div className="footer-bottom section-wrap"><span>© {new Date().getFullYear()} HeatMechanics</span><span>Comfort, considered.</span><a href="#top">Back to the top ↑</a></div>
+        <div className="footer-bottom section-wrap"><span>© {new Date().getFullYear()} {business.name}</span><span>{business.website}</span><a href="#top">Back to the top ↑</a></div>
       </footer>
       <a className="whatsapp-button" href={whatsapp.href} target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
         <Icon name="whatsapp" size={28} />

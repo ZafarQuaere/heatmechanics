@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { FormEvent } from 'react';
 import { useSearchParams } from 'react-router';
-import { services } from '../content/site';
+import { business, services } from '../content/site';
 import { Icon } from '../icons';
 
 export function EnquiryForm({ serviceSlug }: { serviceSlug?: string }) {
@@ -9,20 +9,33 @@ export function EnquiryForm({ serviceSlug }: { serviceSlug?: string }) {
   const querySlug = params.get('service') ?? '';
   const requested = serviceSlug || querySlug;
   const [selected, setSelected] = useState(() => (services.some((service) => service.slug === requested) ? requested : ''));
-  const [formNotice, setFormNotice] = useState('');
+  const [preparedUrl, setPreparedUrl] = useState('');
 
   useEffect(() => {
-    if (requested && services.some((service) => service.slug === requested)) setSelected(requested);
+    setSelected(services.some((service) => service.slug === requested) ? requested : '');
+    setPreparedUrl('');
   }, [requested]);
 
   function handleEnquiry(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setFormNotice('Your details have not been sent. Connect HeatMechanics’ preferred inbox or booking system to receive enquiries from this form.');
+    const data = new FormData(event.currentTarget);
+    const service = services.find((item) => item.slug === data.get('service'));
+    if (!service) return;
+    const message = [
+      `Hello ${business.name}, I would like to enquire about ${service.title}.`,
+      `Name: ${String(data.get('name') ?? '').trim()}`,
+      `Email: ${String(data.get('email') ?? '').trim()}`,
+      `Postcode: ${String(data.get('postcode') ?? '').trim()}`,
+      `Details: ${String(data.get('details') ?? '').trim()}`,
+    ].join('\n');
+    const url = `${business.whatsappHref}?text=${encodeURIComponent(message)}`;
+    setPreparedUrl(url);
+    window.open(url, '_blank', 'noopener,noreferrer');
   }
 
   return (
     <form className="enquiry-card" onSubmit={handleEnquiry} data-reveal>
-      <div className="form-heading"><span>START A CONVERSATION</span><span className="form-index">HM / 01</span></div>
+      <div className="form-heading"><span>START A CONVERSATION</span><span className="form-index">QZ / 01</span></div>
       <h3>What can we help with?</h3>
       <label>Your name<input name="name" type="text" placeholder="Name" autoComplete="name" required /></label>
       <div className="form-row"><label>Email address<input name="email" type="email" placeholder="you@example.com" autoComplete="email" required /></label><label>Postcode<input name="postcode" type="text" placeholder="Your postcode" autoComplete="postal-code" required /></label></div>
@@ -33,9 +46,9 @@ export function EnquiryForm({ serviceSlug }: { serviceSlug?: string }) {
         </select>
       </label>
       <label>A few details<textarea name="details" rows={3} placeholder="Tell us what’s happening…" /></label>
-      <button className="button button-submit" type="submit">Prepare my enquiry <Icon name="arrow" size={17} /></button>
-      <p className="form-disclaimer">No enquiry is sent yet. This form needs HeatMechanics’ preferred contact destination connected before it can receive submissions.</p>
-      {formNotice && <p className="form-notice" role="status">{formNotice}</p>}
+      <button className="button button-submit" type="submit">Continue in WhatsApp <Icon name="arrow" size={17} /></button>
+      <p className="form-disclaimer">Opens your details in WhatsApp. Review the message and press send there to contact us. This site does not save your enquiry. Prefer email? <a href={business.emailHref}>Email QZ Engineers</a>.</p>
+      {preparedUrl && <p className="form-notice" role="status">Your message is ready. Nothing has been sent automatically. If WhatsApp did not open, <a href={preparedUrl} target="_blank" rel="noopener noreferrer">open your prepared enquiry</a>.</p>}
     </form>
   );
 }

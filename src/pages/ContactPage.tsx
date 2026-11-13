@@ -7,7 +7,7 @@ export function ContactPage() {
       <ContactSection
         headingLevel="h1"
         title={<>Request<br /><span>a quote.</span></>}
-        intro={`Tell us the service you need, whether it is a home or a business, and what is happening. You can also message HeatMechanics on WhatsApp at ${whatsapp.display}. This form does not send until HeatMechanics connects a contact destination.`}
+        intro={`Based in South London and serving all London boroughs. Tell us about your home or business, or contact our engineers directly on ${whatsapp.display}. Prepare a message below, then review and send it in WhatsApp.`}
       />
     </main>
   );

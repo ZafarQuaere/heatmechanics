@@ -1,0 +1,35 @@
+{
+  "conversation": "https://chatgpt.com/share/6af4bd96-3564-83e8-a525-ceb7eb1a846e",
+  "retrieved": "2026-11-13",
+  "note": "Client-requested reference imagery. All four images visually inspected. Not claimed as QZ completed projects. Third-party ownership and reuse licence were not independently verified.",
+  "images": [
+    {
+      "file": "public/images/qz-radiator.webp",
+      "caption": "Radiators for Heating | Hydronic & Hot Water Heating Radiators",
+      "sourceUrl": "https://images.openai.com/static-rsc-4/dCNHdLAgSFr7QZAldjFVbsAhEO2CjoshdtGNA3sMzgEhAzZZBP56s-6NXYyRaPgRizqWHCNbXgTFHkey1Qor_jFAqDQ9t_hgSQeEOK9OVhltHRP9KKQm0oW-bBjKObI0FVpTkHfWejw2EmePLUuwFqeKzfb7J7YDhfci0ufoTfs?purpose=inline",
+      "processing": "WebP encoding, quality 82; maximum 1400 × 1000; no content retouching"
+    },
+    {
+      "file": "public/images/qz-hot-water-cylinder.webp",
+      "caption": "Lancashire Heating & Plumbing: Blackburn, Burnley, Clitheroe & Beyond",
+      "sourceUrl": "https://images.openai.com/static-rsc-4/Pbb4z2zfWzW_DRjjIZM3S-NSmxD7Aa-i6vxwcXIcF1HVB6hH4QYtQ_UlqdCwMG-PLfzvO5dvM_vJmgbEuX18AZDyJUJe3ngqAsqUpC3tOwVzEIR2zopwRblSG6mQ_FmNWBfCN9kKlWciy5ULykLM4TRbeOHkqp5VXoen6FgRjkM?purpose=inline",
+      "processing": "WebP encoding, quality 82; maximum 1400 × 1000; no content retouching"
+    },
+    {
+      "file": "public/images/qz-air-conditioning.webp",
+      "caption": "Apartment Air Conditioning Installation London | Wall-Mount, HomeKube, InvisiGrille",
+      "sourceUrl": "https://images.openai.com/static-rsc-4/qYMh2qkIT6na1GFpxtbuH6-X6c2qQ2-MZv_N1HXIZpK4WzPhBYsKGrXXZNEU3Lvvnv6Ktctg65osLR3A2ttMjg3-D3Hs8ZDYww1ncnLl2NWwhlXn6OP28URK0d6ukmz5pa-BA2dveC7tmTWICqSj0QOQOgu07HjZAlR11mLyLGY?purpose=inline",
+      "processing": "WebP encoding, quality 82; maximum 1400 × 1000; no content retouching"
+    },
+    {
+      "file": "public/images/qz-thermostat.webp",
+      "caption": "Premium Home Automation | by Digihome | ArchiPro NZ",
+      "sourceUrl": "https://images.openai.com/static-rsc-4/lGXJE4zctjqJ0KRQB_FgQLJvBrdFK2VdkxWQQ6YfSheu2P9ClUOlL5OTgbIR7AnMjtspppfhjKKzqquvS_nQ2VhJ-ULZJL4xuwHboKg3sy5-4yLERr2p5CAyuww7MagEBxCLccuUkwZME9JiiTCD1XL62P9foy_jVuT8-jpLnmU?purpose=inline",
+      "processing": "WebP encoding, quality 82; maximum 1400 × 1000; no content retouching"
+    }
+  ],
+  "excluded": [
+    "People-containing boiler, gas safety, AC installation, manifold and plumbing images.",
+    "Underfloor loop image also contains workers at full resolution; not shipped."
+  ]
+}

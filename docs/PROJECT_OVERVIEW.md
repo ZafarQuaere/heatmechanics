@@ -1,207 +1,106 @@
-# HeatMechanics — project overview
+# QZ Engineers — project overview
 
-Context document for the HeatMechanics marketing site. Read this before changing layout, copy, theme, hosting, or the enquiry form.
+Updated 13 November 2026 after implementing the [client update plan](CLIENT_UPDATE_PLAN.md). The project was previously branded HeatMechanics. The user requested QZ Engineers branding and contact details, then supplied a symbol-only replacement logo.
 
 ## Product
 
-Marketing site for **HeatMechanics**, a gas engineering, heating, plumbing, and air-conditioning business. The promise is seasonal comfort: warm winters and cool summers, for homes and businesses.
+Responsive marketing site for a South London plumbing, heating, gas and air-conditioning business serving homes and businesses across all London boroughs. Tagline: **WARM WINTERS, COOL SUMMERS**. Client-supplied credentials: Gas Safe Registered and REFCOM Certified F-Gas Installer. No registration numbers, reviews, opening hours or response-time promises have been invented.
 
-The homepage keeps the original editorial sections. Each of the seven services has its own page, with a guides page and a contact page alongside. All service names, page titles, descriptions, and guide answers live in `src/content/site.ts`.
+The supplied flame/snowflake emblem in `public/qz-engineers-logo.png` is used by the header, footer, app logo configuration and favicon. The header and footer display the emblem with QZ Engineers beside it, without the old Heat Mechanic wordmark or subtext. QZ Engineers remains in page copy, copyright, metadata and the accessible home-link name. Internal package, repository, storage and hosting identifiers remain unchanged.
 
-Copy stays inside the services the business already lists. The supplied WhatsApp number is +44 7424 082283 (`https://wa.me/447424082283`), used only by the fixed chat button. Do not add towns, “near me” pages, reviews, another phone number, an email address, insurance, a registration number, a response time, or emergency call-out until those facts are supplied. Do not add gas-leak repair, radiator installation, commercial boiler servicing, maintenance contracts, or a separate commercial gas inspection as services.
+## Stack and setup
 
-## Repository and hosting
-
-This folder is its own git repository. It is not part of the QZ Engineers repository.
-
-| | |
-|---|---|
-| GitHub | [ZafarQuaere/heatmechanics](https://github.com/ZafarQuaere/heatmechanics) |
-| Branch | `main` |
-| Vercel project | `heatmechanics` on the team `zafarquaeres-projects` |
-| Production | [heatmechanics.vercel.app](https://heatmechanics.vercel.app) |
-| Dashboard | [Vercel project](https://vercel.com/zafarquaeres-projects/heatmechanics) |
-
-Production was published with the Vercel CLI. The GitHub repository is not connected for automatic deploys yet. A push to `main` does not update the live site until that connection is made, or until `vercel deploy --prod` is run again from this directory.
-
-An earlier host, [heatmech-wsp7n2px.manus.space](https://heatmech-wsp7n2px.manus.space/), injects a “Made with Manus” badge and analytics. Those are not part of this source, and that subdomain is not the permanent address. Local development does not show them.
-
-`vercel.json` tells Vercel to install with pnpm, run `pnpm build`, and publish `dist`. Existing HTML files are served first. A request that does not match a built file is rewritten to `/index.html`, and the client router takes over. There is no sitemap and no canonical URL, because the permanent domain is not chosen. `public/robots.txt` allows crawl.
-
-## Stack
-
-| | |
-|---|---|
-| App | Vite 8, React 19, TypeScript, React Router 7 |
-| Styles | One global stylesheet, CSS variables |
-| Icons | Inline SVG in `src/icons.tsx` |
-| Package manager | pnpm 11 |
-| Locale / copy | British English (`enquiry`, `servicing`), `lang="en-GB"` |
-| Hosting | Vercel, static output from `dist` |
-
-No backend, database, or form destination. Runtime dependencies are React, React DOM, and React Router.
-
-## Commands
+Vite 8, React 19, TypeScript, React Router 7, one global stylesheet and inline SVG icons. Runtime dependencies remain React, React DOM and React Router. No backend, database, CMS, accounts or additional runtime packages.
 
 ```bash
-pnpm dev       # Vite on port 3000, host 0.0.0.0
-pnpm build     # typecheck, client build, server bundle, then prerender each route into dist/
-pnpm preview   # preview the production build on port 3000
+pnpm install --frozen-lockfile
+pnpm dev
+pnpm build
+pnpm preview
 ```
 
-If port 3000 is taken, start Vite on another port (for example `pnpm exec vite --host 127.0.0.1 --port 3001`).
-
-`pnpm build` runs, in order:
-
-1. `tsc --noEmit`
-2. Client bundle into `dist/`
-3. Server bundle of `src/entry-server.tsx` into `dist/server`
-4. `scripts/prerender.mjs`, which writes one `index.html` per route and then deletes `dist/server`
-
-Publish the current directory with:
+`package.json` declares pnpm 11.25.0. Dependencies were already installed in the review environment. The pnpm version command did not complete promptly, so npm was used to run the same scripts without reinstalling or changing the lockfile:
 
 ```bash
-vercel deploy --prod --scope zafarquaeres-projects
+npm run dev -- --host 127.0.0.1
+npm run build
 ```
 
-The directory must stay linked to project `heatmechanics`. `.vercel/` is local link data and is gitignored.
+Local preview: `http://127.0.0.1:3000/`. Node v25.2.1 was observed; this is not a declared minimum. No application environment variables are required by current source. Do not commit local `.env.local` or `.vercel/` data.
 
-## Routes
+## Build and routing
 
-| Path | Page |
+`build` runs TypeScript checking, Vite client bundling, a server bundle of `src/entry-server.tsx`, and `scripts/prerender.mjs`. The script writes HTML for every route and deletes the temporary server bundle. The result is a static `dist/` directory with eleven HTML pages and route-specific titles/descriptions. Browser entry hydrates built HTML; development uses client rendering.
+
+| Path | Content |
 |---|---|
-| `/` | Homepage |
-| `/services/boiler-repair-servicing` | Gas boiler repair and servicing |
-| `/services/boiler-installation-replacement` | Boiler installation and replacement |
-| `/services/gas-safety-checks` | Landlord gas safety checks and CP12 |
-| `/services/general-plumbing` | General plumbing repairs |
-| `/services/air-conditioning` | Air conditioning installation and servicing |
-| `/services/unvented-cylinder-installation` | Unvented cylinder installation |
-| `/services/commercial-gas-catering` | Commercial gas and catering equipment |
-| `/guides` | Common questions |
-| `/contact` | Enquiry form |
-| Any other path | “We can’t find that page.”, rendered by the client router |
+| `/` | Hero, eight service cards, About Us, process, credentials, coverage, contact |
+| `/services/boiler-repair-servicing` | Boiler repair, servicing and heating repairs |
+| `/services/boiler-installation-replacement` | Boiler installation/replacement |
+| `/services/gas-safety-checks` | Gas safety, CP12 and gas leak detection |
+| `/services/general-plumbing` | Plumbing installations/repairs, radiators, first/second fix |
+| `/services/air-conditioning` | AC installation and servicing |
+| `/services/unvented-cylinder-installation` | Vented and unvented hot-water cylinder installation; original URL retained |
+| `/services/commercial-gas-catering` | Existing commercial gas/catering offering retained |
+| `/services/underfloor-heating` | Underfloor heating, thermostats and power flushing; new route |
+| `/guides` | Service FAQs and enquiry handoff explanation |
+| `/contact` | Contact details and enquiry form |
 
-Header links: Services (`/#services`), Our approach (`/#approach`), Guides (`/guides`), Contact (`/contact`). The quote button goes to `/contact`. Service cards link to their own pages. On a service page the enquiry form is already set to that service.
+Unknown paths/slugs render the existing not-found page. Header links target services, About Us, guides and contact. Footer adds `/#coverage`. Coverage lists four groups of example areas within the stated London-wide service; it is not a full borough directory. No individual location pages were added.
 
-## Page structure
+## Business details and enquiries
 
-The shell (announcement bar, header, footer, seasonal theme, WhatsApp button) lives in `src/App.tsx`. Page bodies live in `src/pages/`. The chat button is fixed at the bottom-right on every page and opens WhatsApp for +44 7424 082283.
+Business details live in `src/content/site.ts`:
 
-Homepage sections, in order:
+- Telephone and WhatsApp: **020 8036 1007**, `tel:+442080361007`, `https://wa.me/442080361007`.
+- Email: **info@qzengineers.co.uk**.
+- Registered office: **80 Kingston Road, SW19 1LA**. This is not described as a walk-in branch.
+- Client's intended website: **qzengineers.co.uk**. Production domain configuration was not changed.
 
-| Section | Anchor | Role |
-|---|---|---|
-| Announcement bar | — | “Gas engineering · heating · air conditioning” |
-| Header | — | Logo, nav, Winter/Summer switch, “Request a quote” |
-| Hero | `#top` | “Warm winters. Cool summers. All sorted.” plus heating photo |
-| Marquee | — | Heating, gas safety, plumbing, air conditioning, commercial gas |
-| Services | `#services` | Seven service cards, each linking to its page |
-| Approach | `#approach` | “Comfort is in the details.” plus cooling photo |
-| Steps | — | Tell us what’s up → Get a clear plan → Feel the difference |
-| Safety | — | Gas safety and CP12 messaging, linking to the gas safety page |
-| Contact | `#contact` | Enquiry form. Submissions are not sent |
-| Footer | — | Logo, links, year |
+The shared enquiry form asks for name, email, postcode, service and details. All except details are required. Service pages preselect their service; `/contact?service=<known-slug>` also preselects it.
 
-A service page has one `h1`, a short explanation, what to include in an enquiry, common questions, related services, and the same enquiry form. Guides answer questions about CP12, boiler servicing, repair versus replacement, Part G, commercial gas, and the fact that the form does not send. Contact is the enquiry section on its own URL, with the same disclaimer.
+**Continue in WhatsApp** validates the form and opens a URL-encoded prepared message containing the entered details. The visitor must review and send it in WhatsApp. Opening the app is not delivery. A fallback link is shown if a new tab does not open. Direct call and email alternatives appear in every contact section. The site does not persist enquiry data or send email in the background. Only the seasonal preference is stored locally.
 
-## Services
+A WhatsApp share page opened successfully with dummy data during QA; no message was sent. This confirms the handoff URL, not account availability, inbox delivery or a response guarantee.
 
-`src/content/site.ts` is the only source for cards, service pages, guide links, and the form’s service dropdown.
+## Design and assets
 
-1. Boiler repair & servicing — Heating. Gas boiler repair, boiler servicing, heating repairs.
-2. Boiler installation & replacement — Heating. The boiler itself, planned around the property. Not a whole new heating system.
-3. Gas safety checks / CP12 — Gas safety. Landlord gas safety certificates and checks for landlords, homes, and properties. Separate from a boiler service.
-4. General plumbing — Plumbing. Everyday water repairs. Not a gas repair, and not radiator installation as its own service.
-5. Air conditioning installation & servicing — Cooling.
-6. Unvented cylinder installation (Part G) — Hot water. Part G requirements are kept in view. No qualification number is stated.
-7. Commercial gas & catering equipment — Commercial. Commercial gas and professional catering equipment. Not a maintenance contract or a separate commercial inspection.
+The editorial layout, Google Fonts (Manrope/DM Sans), CSS tokens, breakpoints, intersection reveals and reduced-motion treatment are retained. Winter is orange/stone; summer uses teal/green neutrals. `heatmechanics-season` remains the localStorage key to preserve existing preferences. The first render is always winter; the saved choice is applied after mount to preserve hydration consistency.
 
-## Seasonal theme
-
-Two palettes, switched in the header and stored in `localStorage` under `heatmechanics-season`.
-
-- Default is **winter**: cool stone page, ink text, flame-orange accent (`#ed5a34`).
-- **Summer**: greener neutrals, teal accent (`#1383a0`).
-
-The first render is always winter, including prerendered HTML, so the saved choice cannot disagree with the server markup. After load, a stored summer choice is applied and written to `document.documentElement.dataset.season`. Tokens live in `:root` and `:root[data-season='summer']` in `src/styles.css`. `index.html` starts with `data-season="winter"`.
-
-Hero caption copy changes with the season (heating/gas/hot water vs air conditioning/ventilation).
-
-## Enquiry form
-
-The form is `src/components/EnquiryForm.tsx`, shown from `src/components/ContactSection.tsx` on the homepage, every service page, and `/contact`.
-
-Fields: name, email, postcode, service, details. Name, email, and postcode are required. The service value is the slug from `src/content/site.ts`.
-
-Submit is prevented in the browser. It shows:
-
-> Your details have not been sent. Connect HeatMechanics’ preferred inbox or booking system to receive enquiries from this form.
-
-The visible disclaimer says no enquiry is sent until a contact destination is connected. Do not pretend the form delivers mail, and do not add an email, postcode area, review, award, or accreditation that is not supplied for the business. WhatsApp (+44 7424 082283) is the supplied chat contact; do not add a separate phone line.
-
-## Design
-
-Direction is a calm editorial service site (inspired by hae.works, not copied). No photographs of people. Photography is equipment and interior only.
-
-- Type: Manrope for headings, DM Sans for body (Google Fonts import in `styles.css`).
-- Layout breakpoints: 1050px, 760px, 390px.
-- Motion: intersection reveals on `[data-reveal]`. The `has-reveal` class is added in the browser, so the text is visible in prerendered HTML before JavaScript runs. `prefers-reduced-motion: reduce` disables the motion.
-- Mobile nav is a button that toggles the menu and closes when a link is chosen.
-- Inner pages reuse the same header, type, cards, and enquiry panel. They are not a separate visual system.
-
-## Assets
-
-| File | Use |
-|---|---|
-| `public/heatmechanics-logo.png` | Header and footer lockup. Also `logoUrl` in `app.config.ts` |
-| `public/images/heating.webp` | Hero photograph |
-| `public/images/cooling.webp` | Approach / air-conditioning photograph |
-| `public/favicon.svg` | Fav icon |
-| `public/manus-routes.json` | Route manifest for the pages above |
-| `public/robots.txt` | Allows crawl. No sitemap URL yet |
+The original equipment hero stays in place. Four reference images from the client conversation are served locally as optimised WebP assets: AC interior, radiator, hot-water cylinder and thermostat. The thermostat is used for the underfloor/control page because the underfloor reference contains workers. No people-containing reference was added. Source captions/URLs and exclusions are recorded in [IMAGE_SOURCES.json](IMAGE_SOURCES.json). Reference imagery is not represented as QZ's completed work.
 
 ## Key files
 
-```
-index.html                         Document shell. Default title and description match the homepage
-vercel.json                        Vercel install, build, dist output, and fallback rewrite
-package.json                       pnpm scripts and dependencies
-src/main.tsx                       Browser entry. Hydrates prerendered HTML
-src/entry-server.tsx               Renders one route to HTML for the prerender step
-src/content/site.ts                Services, guides, titles, descriptions, prerender paths
-src/App.tsx                        Shell, seasonal theme, routes
-src/icons.tsx                      Inline icons
-src/pages/HomePage.tsx             Homepage
-src/pages/ServicePage.tsx          One service, chosen by slug
-src/pages/GuidesPage.tsx           Common questions
-src/pages/ContactPage.tsx          Enquiry page
-src/pages/NotFoundPage.tsx         Unknown address
-src/components/ServiceCard.tsx     Service card used on the homepage and related services
-src/components/ContactSection.tsx  Enquiry band
-src/components/EnquiryForm.tsx     Form that does not send
-src/styles.css                     Tokens, layout, motion
-scripts/prerender.mjs              Writes dist/<route>/index.html for every route
-app.config.ts                      Logo path
-vite.config.ts                     Client build output: dist/
-docs/PROJECT_OVERVIEW.md           This document
-docs/features/SEO_FEATURE.md       SEO pages and prerender notes
-docs/TASK_LOG.md                   Daily log
-plan.md                            Original design brief (some asset paths are outdated)
-TODO.md                            Original delivery checklist (complete)
-```
+| File | Role |
+|---|---|
+| `src/content/site.ts` | Business, credentials, coverage, services, guides, metadata, image data and prerender paths |
+| `src/App.tsx` | Routing, shell, seasonal state, LocalBusiness JSON-LD |
+| `src/components/Brand.tsx` | Supplied symbol-only logo in header/footer |
+| `src/components/ContactLinks.tsx` | Call, WhatsApp, email and registered office |
+| `src/components/ContactSection.tsx` | Shared contact section |
+| `src/components/EnquiryForm.tsx` | Validation and WhatsApp handoff |
+| `src/pages/HomePage.tsx` | Homepage including About Us and coverage |
+| `src/pages/ServicePage.tsx` | Shared service template, optional reference photo, FAQ and related cards |
+| `src/styles.css` | Existing themes/layout plus small brand, coverage and contact additions |
+| `src/main.tsx`, `src/entry-server.tsx` | Browser hydration and prerender entry points |
+| `scripts/prerender.mjs` | Eleven static route pages |
+| `public/manus-routes.json` | Route manifest with updated titles and underfloor route |
+| `index.html` | British English shell and fallback homepage metadata |
+| `vercel.json` | Existing pnpm/build/static output/fallback configuration |
 
-Homepage metadata:
+## SEO and hosting
 
-- Title: `HeatMechanics | Gas engineering, heating and air conditioning`
-- Description: gas and heating engineer for homes and businesses, naming the services above.
+Titles and descriptions now use QZ Engineers and London service intent. LocalBusiness JSON-LD contains only supplied name, phone, email, office and London coverage; no fabricated ratings, hours or credential identifiers. Canonicals, sitemap and social URLs remain deferred until the final production hostname is settled. `robots.txt` allows crawl.
 
-Every other built route sets its own title and description from `getPageMeta` in `src/content/site.ts`, both in the prerendered HTML and after a client navigation.
+Repository context: GitHub `ZafarQuaere/heatmechanics`, Vercel project `heatmechanics`, previously documented host `heatmechanics.vercel.app`. These identifiers are retained. Remote deployment state and Git auto-deploy configuration were not checked. No production deployment, domain reassignment or project migration was performed for this update.
 
-## Constraints
+## Verification
 
-- Keep copy factual. Do not invent contact details, a service area, or trust claims. WhatsApp (+44 7424 082283) is already supplied.
-- Do not add a backend unless that is requested.
-- New page copy belongs in `src/content/site.ts`, not in a second list.
-- Do not treat the manus.space host as the lasting address, and do not publish a sitemap or canonical URLs until the permanent domain is chosen.
-- `plan.md` still mentions `/manus-storage/...` image URLs. The live paths are the files under `public/images/`.
+- Production build passes TypeScript, client/server bundling and eleven-page prerendering.
+- Desktop/mobile browser review covers header, hero, service page, coverage and contact layouts.
+- Summer preference persists after reload; mobile navigation opens and closes on link selection.
+- New service and query-string preselection work; required fields block an empty submission.
+- WhatsApp message preparation was checked with dummy data including punctuation, ampersands and a newline, without sending a message.
+- The symbol-only logo is copied directly from the user attachment without redrawing or retouching it.
+
+No dedicated test/lint scripts exist. Automated output checks and browser checks are used for this bounded update. Historical `plan.md`, `TODO.md` and older task-log entries describe the earlier delivery; the client update plan and this overview define the current scope.

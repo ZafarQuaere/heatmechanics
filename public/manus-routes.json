@@ -1,14 +1,48 @@
 {
   "routes": [
-    { "path": "/", "title": "HeatMechanics | Gas engineering, heating and air conditioning" },
-    { "path": "/services/boiler-repair-servicing", "title": "Gas boiler repair and servicing | HeatMechanics" },
-    { "path": "/services/boiler-installation-replacement", "title": "Boiler installation and replacement | HeatMechanics" },
-    { "path": "/services/gas-safety-checks", "title": "Landlord gas safety certificate | HeatMechanics" },
-    { "path": "/services/general-plumbing", "title": "General plumbing repairs | HeatMechanics" },
-    { "path": "/services/air-conditioning", "title": "Air conditioning installation and servicing | HeatMechanics" },
-    { "path": "/services/unvented-cylinder-installation", "title": "Unvented cylinder installation | HeatMechanics" },
-    { "path": "/services/commercial-gas-catering", "title": "Commercial gas and catering equipment | HeatMechanics" },
-    { "path": "/guides", "title": "Guides and common questions | HeatMechanics" },
-    { "path": "/contact", "title": "Request a quote | HeatMechanics" }
+    {
+      "path": "/",
+      "title": "QZ Engineers | Plumbing, Heating & Air Conditioning London"
+    },
+    {
+      "path": "/services/boiler-repair-servicing",
+      "title": "Gas boiler repair and servicing London | QZ Engineers"
+    },
+    {
+      "path": "/services/boiler-installation-replacement",
+      "title": "Boiler installation and replacement London | QZ Engineers"
+    },
+    {
+      "path": "/services/gas-safety-checks",
+      "title": "Landlord gas safety certificate London | QZ Engineers"
+    },
+    {
+      "path": "/services/general-plumbing",
+      "title": "General plumbing repairs London | QZ Engineers"
+    },
+    {
+      "path": "/services/air-conditioning",
+      "title": "Air conditioning installation and servicing London | QZ Engineers"
+    },
+    {
+      "path": "/services/unvented-cylinder-installation",
+      "title": "Vented & Unvented Hot-Water Cylinders London | QZ Engineers"
+    },
+    {
+      "path": "/services/commercial-gas-catering",
+      "title": "Commercial gas and catering equipment London | QZ Engineers"
+    },
+    {
+      "path": "/services/underfloor-heating",
+      "title": "Underfloor Heating & Thermostats London | QZ Engineers"
+    },
+    {
+      "path": "/guides",
+      "title": "Heating, Plumbing & AC Guides | QZ Engineers London"
+    },
+    {
+      "path": "/contact",
+      "title": "Contact QZ Engineers | London Plumbing, Heating & AC"
+    }
   ]
 }

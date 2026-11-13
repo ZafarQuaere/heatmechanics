@@ -23,6 +23,7 @@ export type Service = {
   askLabel: string;
   faqs: Faq[];
   related: string[];
+  image?: { src: string; alt: string; width: number; height: number };
 };
 
 export type Guide = {
@@ -31,21 +32,59 @@ export type Guide = {
   related: string[];
 };
 
-export const whatsapp = {
-  display: '+44 7424 082283',
-  href: 'https://wa.me/447424082283',
+export const business = {
+  name: 'QZ Engineers',
+  tagline: 'WARM WINTERS, COOL SUMMERS',
+  credentials: ['Gas Safe Registered', 'REFCOM Certified F-Gas Installer'],
+  phone: '020 8036 1007',
+  phoneHref: 'tel:+442080361007',
+  email: 'info@qzengineers.co.uk',
+  emailHref: 'mailto:info@qzengineers.co.uk',
+  address: '80 Kingston Road, SW19 1LA',
+  website: 'qzengineers.co.uk',
+  whatsappHref: 'https://wa.me/442080361007',
+};
+
+export const whatsapp = { display: business.phone, href: business.whatsappHref };
+
+export const businessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: business.name,
+  telephone: '+442080361007',
+  email: business.email,
+  address: {
+    '@type': 'PostalAddress', streetAddress: '80 Kingston Road',
+    postalCode: 'SW19 1LA', addressLocality: 'London', addressCountry: 'GB',
+  },
+  areaServed: { '@type': 'City', name: 'London' },
+};
+
+export const coverageAreas = [
+  { title: 'South & South West', places: 'Wimbledon · South Wimbledon · Wimbledon Chase · Kingston · Merton · Wandsworth · Richmond · Clapham · Croydon · Battersea · Putney' },
+  { title: 'West & Central', places: 'Hounslow · Southall · Chelsea · Kensington · Knightsbridge · Mayfair · Westminster · Fulham · Chiswick · Ealing · Hammersmith' },
+  { title: 'North & North West', places: 'Hampstead · Highgate · Camden · Islington · Finchley · Barnet · Harrow · Wembley' },
+  { title: 'East & South East', places: 'Greenwich · Canary Wharf · Docklands · Hackney · Stratford · Lewisham · Bromley' },
+];
+
+export const serviceImages = {
+  cooling: { src: '/images/qz-air-conditioning.webp', alt: 'A wall-mounted air conditioning unit in a bright living room', width: 1229, height: 860 },
+  radiator: { src: '/images/qz-radiator.webp', alt: 'A white wall-mounted radiator in a contemporary interior', width: 1290, height: 860 },
+  cylinder: { src: '/images/qz-hot-water-cylinder.webp', alt: 'A hot-water cylinder with copper pipework and an expansion vessel', width: 862, height: 746 },
+  controls: { src: '/images/qz-thermostat.webp', alt: 'A wall-mounted thermostat displaying the room temperature', width: 1000, height: 1000 },
 };
 
 export const services: Service[] = [
   {
     slug: 'boiler-repair-servicing',
+    image: serviceImages.radiator,
     number: '01',
     icon: 'boiler',
     title: 'Boiler repair & servicing',
     tag: 'HEATING',
     summary: 'Gas boiler repair, boiler servicing and heating repairs when the system is not doing its job.',
-    seoTitle: 'Gas boiler repair and servicing | HeatMechanics',
-    seoDescription: 'Gas boiler repair, boiler servicing and heating repairs for homes and businesses. Tell HeatMechanics what the boiler is doing and we will talk through the next step.',
+    seoTitle: 'Gas boiler repair and servicing London | QZ Engineers',
+    seoDescription: 'Gas boiler repair, boiler servicing and heating repairs for homes and businesses. Tell QZ Engineers what the boiler is doing and we will talk through the next step.',
     headline: 'Gas boiler repair',
     headlineAccent: 'and servicing.',
     intro: 'When the heating has stopped, a room stays cold, or the boiler is due a service, this is the page to start from.',
@@ -80,18 +119,19 @@ export const services: Service[] = [
   },
   {
     slug: 'boiler-installation-replacement',
+    image: serviceImages.radiator,
     number: '02',
     icon: 'spark',
     title: 'Boiler installation & replacement',
     tag: 'HEATING',
     summary: 'Boiler installation and boiler replacement, planned around the property and how the heating is used.',
-    seoTitle: 'Boiler installation and replacement | HeatMechanics',
-    seoDescription: 'Boiler installation and boiler replacement for homes and businesses, planned around the property. This is the boiler itself, not a whole new heating system.',
+    seoTitle: 'Boiler installation and replacement London | QZ Engineers',
+    seoDescription: 'Boiler installation and boiler replacement for homes and businesses, planned around the property. Gas Safe registered engineers serving London.',
     headline: 'Boiler installation',
     headlineAccent: 'and replacement.',
-    intro: 'HeatMechanics installs and replaces boilers for homes and businesses, planned around the property and the way the heating is used.',
+    intro: 'QZ Engineers installs and replaces boilers for homes and businesses, planned around the property and the way the heating is used.',
     paragraphs: [
-      'A boiler installation puts in the appliance that heats the rooms and, where the system is set up that way, the hot water. We treat it as the heating installation for that boiler, not as a new set of pipes and radiators throughout the building.',
+      'A boiler installation puts in the appliance that heats the rooms and, where the system is set up that way, the hot water. Tell us about the existing controls, radiators and pipework so we can plan the work around your property.',
       'Boiler replacement is worth a conversation when the current boiler fails often, parts are hard to find, or it no longer heats the property properly. A repair may still be the sensible first step. We can talk that through before you commit to a new appliance.',
       'The plan depends on the property: where the boiler sits, how the flue can leave the building, and whether the existing controls can stay. Those details belong in the enquiry.',
     ],
@@ -105,8 +145,8 @@ export const services: Service[] = [
     askLabel: 'a new boiler.',
     faqs: [
       {
-        question: 'Is boiler replacement the same as installing a whole heating system?',
-        answer: 'No. This service is boiler installation and replacement: the appliance, planned around the property. It is not a separate offer to install every pipe and radiator from scratch.',
+        question: 'Can I discuss radiator and control work with a boiler replacement?',
+        answer: 'Yes. Tell us about any radiator, thermostat or plumbing work you need alongside the boiler replacement so we can discuss the scope together.',
       },
       {
         question: 'Should I repair the boiler or replace it?',
@@ -123,18 +163,18 @@ export const services: Service[] = [
     slug: 'gas-safety-checks',
     number: '03',
     icon: 'certificate',
-    title: 'Gas safety checks / CP12',
+    title: 'Gas services & safety / CP12',
     tag: 'GAS SAFETY',
-    summary: 'Landlord gas safety certificates and gas safety checks for landlords, homes and properties.',
-    seoTitle: 'Landlord gas safety certificate | HeatMechanics',
-    seoDescription: 'Gas safety checks and CP12 landlord gas safety certificates for landlords, homes and properties. The check is separate from a boiler service or a repair.',
-    headline: 'Landlord gas safety',
-    headlineAccent: 'checks and CP12.',
-    intro: 'HeatMechanics carries out gas safety checks and CP12 certificates for landlords, homes and properties.',
+    summary: 'Gas safety inspections, landlord certificates (CP12) and gas leak detection across London.',
+    seoTitle: 'Landlord gas safety certificate London | QZ Engineers',
+    seoDescription: 'Gas Safe registered engineers for gas safety inspections, CP12 landlord certificates and gas leak detection across London.',
+    headline: 'Gas services',
+    headlineAccent: 'and safety checks.',
+    intro: 'Our Gas Safe registered engineers provide gas safety inspections, landlord CP12 certificates and gas leak detection across London.',
     paragraphs: [
       'A landlord gas safety check looks at the gas appliances and flues the record needs to cover. The completed record is often called a CP12. It is the document used to show that the check has been done.',
       'A home that is not let can still book a gas safety check when you want the appliances looked over. Say whether the property is rented, so we know if you need the landlord record.',
-      'This visit is a check and a certificate. It is not a repair by itself. If something needs work, we will explain it. Boiler repair and servicing is booked as its own service, including in the same enquiry if you need both.',
+      'We also provide gas leak detection. Tell us about a planned inspection or an existing system that needs attention. Boiler repair and servicing is a separate service and can be discussed in the same enquiry. This enquiry form is not an emergency contact channel.',
     ],
     enquiryPoints: [
       'Whether you need a landlord CP12 or a check for a home you live in',
@@ -162,19 +202,20 @@ export const services: Service[] = [
   },
   {
     slug: 'general-plumbing',
+    image: serviceImages.radiator,
     number: '04',
     icon: 'pipe',
     title: 'General plumbing',
     tag: 'PLUMBING',
-    summary: 'Everyday plumbing repairs that keep water moving in a home or a business.',
-    seoTitle: 'General plumbing repairs | HeatMechanics',
-    seoDescription: 'Everyday plumbing repairs for homes and businesses, from leaks to fittings that have stopped working. Boilers, gas appliances and unvented cylinders have their own pages.',
+    summary: 'Plumbing installations and repairs, radiators, and first-fix and second-fix work.',
+    seoTitle: 'General plumbing repairs London | QZ Engineers',
+    seoDescription: 'Plumbing installations, repairs, radiators and first-fix and second-fix plumbing across London. Contact QZ Engineers for your home or business.',
     headline: 'General plumbing',
-    headlineAccent: 'repairs.',
-    intro: 'Everyday plumbing repairs for homes and businesses, from a fitting that leaks to the pipework that has stopped doing its job.',
+    headlineAccent: 'and installations.',
+    intro: 'Professional plumbing for homes and businesses across London, from everyday repairs to first-fix and second-fix installations.',
     paragraphs: [
-      'This service covers taps, leaks, toilets, wastes and other everyday water repairs. Tell us what is leaking, what has stopped, and how long it has been happening.',
-      'A boiler, a heating control or a gas appliance is not a plumbing enquiry. Use boiler repair and servicing, or gas safety checks, for those jobs.',
+      'We install and repair plumbing, including taps, toilets, wastes and pipework. First-fix plumbing prepares the pipework; second-fix connects the fixtures and fittings.',
+      'Radiator installation and replacement is also available. Tell us how many radiators are involved and whether the work is part of a wider property project.',
       'An unvented hot-water cylinder has its own page, because that installation has Part G requirements. A simpler repair on other pipework can stay here.',
     ],
     enquiryPoints: [
@@ -187,32 +228,33 @@ export const services: Service[] = [
     askLabel: 'plumbing.',
     faqs: [
       {
-        question: 'Do you install radiators as a service of its own?',
-        answer: 'Radiator installation is not listed as its own service. If a plumbing or heating fault involves a radiator, describe it and we will say whether it sits with plumbing or with heating repairs.',
+        question: 'Do you install and replace radiators?',
+        answer: 'Yes. We install and replace radiators in homes and businesses. Include the number of radiators and the current heating setup in your enquiry.',
       },
       {
         question: 'Is a smell of gas a plumbing job?',
-        answer: 'No. Leave the building, avoid switches and flames, and call the National Gas Emergency Service on 0800 111 999. That is the public gas emergency line, not a HeatMechanics number. This site does not offer an emergency call-out.',
+        answer: 'No. Leave the building, avoid switches and flames, and call the National Gas Emergency Service on 0800 111 999. That is the public gas emergency line, not a QZ Engineers number. This site does not offer an emergency call-out.',
       },
       {
         question: 'Can you look at a leaking pipe in a business?',
         answer: 'Yes. General plumbing covers homes and businesses. Catering gas equipment is a different service.',
       },
     ],
-    related: ['unvented-cylinder-installation', 'boiler-repair-servicing', 'gas-safety-checks'],
+    related: ['unvented-cylinder-installation', 'underfloor-heating', 'boiler-repair-servicing'],
   },
   {
     slug: 'air-conditioning',
+    image: serviceImages.cooling,
     number: '05',
     icon: 'snowflake',
     title: 'Air conditioning installation & servicing',
     tag: 'COOLING',
     summary: 'Air conditioning installation and servicing for homes and businesses.',
-    seoTitle: 'Air conditioning installation and servicing | HeatMechanics',
-    seoDescription: 'Air conditioning installation and servicing for homes and businesses. Tell HeatMechanics whether you need a new system or help with one that is already fitted.',
+    seoTitle: 'Air conditioning installation and servicing London | QZ Engineers',
+    seoDescription: 'Air conditioning installation and servicing for homes and businesses. Tell QZ Engineers whether you need a new system or help with one that is already fitted.',
     headline: 'Air conditioning',
     headlineAccent: 'installation and servicing.',
-    intro: 'Installation and servicing for homes and businesses that need a cooler season.',
+    intro: 'Bespoke air conditioning installation and servicing across London from REFCOM-certified F-Gas installers.',
     paragraphs: [
       'Installation is a new air conditioning system planned around the room: where the indoor unit can sit, where the outdoor unit can go, and how the pipework can run.',
       'Servicing is for a system that is already in place. The visit checks that the unit is cooling as it should and looks at the basics that keep it running.',
@@ -244,20 +286,21 @@ export const services: Service[] = [
   },
   {
     slug: 'unvented-cylinder-installation',
+    image: serviceImages.cylinder,
     number: '06',
     icon: 'cylinder',
-    title: 'Unvented cylinder installation (Part G)',
+    title: 'Vented & unvented hot-water cylinders',
     tag: 'HOT WATER',
-    summary: 'Unvented hot-water cylinder installation, with Part G requirements kept in view.',
-    seoTitle: 'Unvented cylinder installation | HeatMechanics',
-    seoDescription: 'Unvented hot-water cylinder installation with Part G requirements kept in view. For homes and businesses that need mains-pressure hot water.',
-    headline: 'Unvented cylinder',
-    headlineAccent: 'installation.',
-    intro: 'Installation of unvented hot-water cylinders, with the Part G requirements for that work kept in view.',
+    summary: 'Vented and unvented hot-water cylinder installation, planned around your hot-water needs.',
+    seoTitle: 'Vented & Unvented Hot-Water Cylinders London | QZ Engineers',
+    seoDescription: 'Vented and unvented hot-water cylinder installation for homes and businesses across London. Discuss your system with QZ Engineers.',
+    headline: 'Hot-water cylinders',
+    headlineAccent: 'vented and unvented.',
+    intro: 'Vented and unvented cylinder installations for homes and businesses across London, with hot-water safety at the centre of the work.',
     paragraphs: [
       'An unvented cylinder stores hot water under mains pressure. It suits a property that needs mains-pressure hot water and has a suitable mains supply.',
-      'Part G of the Building Regulations covers hot water safety for this kind of cylinder, including the safety controls the installation needs. HeatMechanics keeps those requirements in view. This page does not quote a personal qualification or a registration number.',
-      'The service is the cylinder installation. It is not a general plumbing call-out and it is not a boiler swap, though a cylinder is often discussed alongside the boiler that feeds it. Say if both are part of the same job.',
+      'Part G of the Building Regulations covers hot water safety for this kind of cylinder, including the safety controls the installation needs. Our installation planning keeps those safety requirements in view.',
+      'We also install vented hot-water cylinders. Tell us about the current system, the space available and your hot-water needs. A boiler replacement or plumbing work can be discussed as part of the same enquiry.',
     ],
     enquiryPoints: [
       'Whether this is a new cylinder or a replacement',
@@ -274,7 +317,7 @@ export const services: Service[] = [
       },
       {
         question: 'Should I use the plumbing page instead?',
-        answer: 'No. Ask for this service rather than general plumbing, so the enquiry is treated as an unvented cylinder installation.',
+        answer: 'Use this page for vented or unvented cylinder installation. General plumbing and radiator work have their own page; you can describe related work in one enquiry.',
       },
       {
         question: 'Do you service existing unvented cylinders?',
@@ -290,7 +333,7 @@ export const services: Service[] = [
     title: 'Commercial gas & catering equipment',
     tag: 'COMMERCIAL',
     summary: 'Commercial gas work and support for professional catering equipment.',
-    seoTitle: 'Commercial gas and catering equipment | HeatMechanics',
+    seoTitle: 'Commercial gas and catering equipment London | QZ Engineers',
     seoDescription: 'Commercial gas work and support for professional catering equipment. For businesses — not a maintenance contract or a separate commercial inspection.',
     headline: 'Commercial gas',
     headlineAccent: 'and catering equipment.',
@@ -324,6 +367,30 @@ export const services: Service[] = [
     ],
     related: ['gas-safety-checks', 'boiler-repair-servicing', 'boiler-installation-replacement'],
   },
+  {
+    slug: 'underfloor-heating', number: '08', icon: 'thermometer', tag: 'ADVANCED COMFORT',
+    title: 'Underfloor heating & controls',
+    image: serviceImages.controls,
+    summary: 'Underfloor heating installation, thermostats and system power flushing.',
+    seoTitle: 'Underfloor Heating & Thermostats London | QZ Engineers',
+    seoDescription: 'Underfloor heating installation, thermostats and heating system power flushing across London. Discuss your home or business with QZ Engineers.',
+    headline: 'Underfloor heating', headlineAccent: 'and better control.',
+    intro: 'Comfort from the ground up. Underfloor heating, thermostats and system power flushing for properties across London.',
+    paragraphs: [
+      'Underfloor heating brings warmth into the room through the floor. We plan the installation around the property, floor construction and the way you use each space.',
+      'Thermostats help you manage when and where the heating runs. Tell us about your existing system and the level of control you would like.',
+      'System power flushing addresses deposits in a heating circuit. Describe any cold spots, uneven heating or system history so we can discuss whether it is the right next step.',
+    ],
+    enquiryPoints: ['Whether you need underfloor heating, a thermostat or power flushing', 'The rooms and floor area involved', 'Your existing heating system', 'Whether this is a renovation, new project or an occupied property'],
+    enquiryPrompt: 'Tell us about the rooms, existing heating and the underfloor heating, thermostat or power flushing work you need.',
+    askLabel: 'advanced comfort.',
+    faqs: [
+      { question: 'Can I discuss underfloor heating during a renovation?', answer: 'Yes. Include the rooms, floor construction and project stage so the installation can be planned around the building work.' },
+      { question: 'Can I ask about a thermostat without underfloor heating?', answer: 'Yes. Thermostats and power flushing can be discussed independently of an underfloor heating installation.' },
+      { question: 'Does every heating system need power flushing?', answer: 'No. Tell us what the heating is doing and we will discuss whether power flushing is appropriate for your system.' },
+    ],
+    related: ['boiler-repair-servicing', 'general-plumbing', 'boiler-installation-replacement'],
+  },
 ];
 
 export const guides: Guide[] = [
@@ -331,7 +398,7 @@ export const guides: Guide[] = [
     question: 'What is a CP12?',
     paragraphs: [
       'A CP12 is the everyday name for a landlord gas safety record. It is the certificate produced after a gas safety check of the appliances and flues that the visit covers.',
-      'In the UK, a landlord is generally required to have the gas appliances they provide checked at least every 12 months, and to keep a record that can be shown to tenants. HeatMechanics carries out those gas safety checks for landlords, homes and properties. This site does not quote a registration number.',
+      'In the UK, a landlord is generally required to have the gas appliances they provide checked at least every 12 months, and to keep a record that can be shown to tenants. QZ Engineers carries out those gas safety checks for landlords, homes and properties. This site does not quote a registration number.',
       'If you live in the home and you are not letting it, you can still ask for a gas safety check. Say that in the enquiry so the visit is not treated as a landlord record.',
     ],
     related: ['gas-safety-checks', 'boiler-repair-servicing'],
@@ -348,7 +415,7 @@ export const guides: Guide[] = [
     question: 'Should a boiler be repaired or replaced?',
     paragraphs: [
       'A repair is the usual starting point when the boiler has a clear fault and otherwise heats the property. Replacement is the conversation when the same faults keep coming back, parts are no longer practical, or the boiler cannot heat the building properly.',
-      'Boiler installation and replacement here means the boiler itself, planned around the property. It is not a separate product for installing every pipe and radiator in a whole heating system.',
+      'The right plan depends on the property, existing boiler, controls and hot-water needs. Mention any radiator or thermostat changes you want to discuss at the same time.',
       'In the enquiry, include the symptoms, the age of the boiler if you know it, and whether the property is a home or a business.',
     ],
     related: ['boiler-repair-servicing', 'boiler-installation-replacement'],
@@ -357,7 +424,7 @@ export const guides: Guide[] = [
     question: 'What does Part G mean for an unvented cylinder?',
     paragraphs: [
       'An unvented cylinder stores hot water under mains pressure. Installing one has to follow Part G of the Building Regulations, which covers hot water safety for this kind of cylinder, including the safety controls the installation needs.',
-      'HeatMechanics lists unvented cylinder installation with those requirements kept in view. It is separate from general plumbing. If a boiler is being replaced at the same time, say so.',
+      'QZ Engineers lists unvented cylinder installation with those requirements kept in view. It is separate from general plumbing. If a boiler is being replaced at the same time, say so.',
     ],
     related: ['unvented-cylinder-installation', 'boiler-installation-replacement'],
   },
@@ -372,34 +439,30 @@ export const guides: Guide[] = [
   {
     question: 'What happens when you use the enquiry form?',
     paragraphs: [
-      'The form asks for your name, email, postcode, the service, and a short description of the job. Nothing is sent. The form says so again when you submit it. HeatMechanics needs a contact destination connected before an enquiry can be received.',
-      `You can message HeatMechanics on WhatsApp at ${whatsapp.display}. There is no stated response time on this site. Include whether the property is a home or a business, and what is happening, so the job is clear once a destination is connected.`,
+      'Choose a service and enter your contact details and a description of the job. Continue in WhatsApp opens a prepared message for you to review and send. Opening WhatsApp does not send the message automatically.',
+      `You can also call ${business.phone} or email ${business.email}. Enquiry details are not saved by this site.`,
     ],
-    related: ['boiler-repair-servicing', 'gas-safety-checks'],
+    related: ['underfloor-heating', 'gas-safety-checks'],
   },
 ];
 
 export const homeSeo = {
-  title: 'HeatMechanics | Gas engineering, heating and air conditioning',
-  description: 'HeatMechanics is a gas and heating engineer for homes and businesses. Boiler repair and servicing, boiler installation, gas safety checks, plumbing, air conditioning and commercial gas.',
+  title: 'QZ Engineers | Plumbing, Heating & Air Conditioning London',
+  description: 'Plumbing, heating, boiler and air conditioning services across London. QZ Engineers: Gas Safe Registered and REFCOM Certified F-Gas Installer, based in South London.',
 };
-
 export const guidesSeo = {
-  title: 'Guides and common questions | HeatMechanics',
-  description: 'Plain answers on CP12 landlord gas safety certificates, boiler servicing, boiler replacement, unvented cylinders and commercial gas work from HeatMechanics.',
+  title: 'Heating, Plumbing & AC Guides | QZ Engineers London',
+  description: 'Answers on CP12, boiler servicing, hot-water cylinders, underfloor heating and contacting QZ Engineers for plumbing, heating and air conditioning in London.',
 };
-
 export const contactSeo = {
-  title: 'Request a quote | HeatMechanics',
-  description: 'Enquire about boiler repair, servicing, installation, gas safety, plumbing, air conditioning, unvented cylinders or commercial gas. The form does not send until a contact destination is connected.',
+  title: 'Contact QZ Engineers | London Plumbing, Heating & AC',
+  description: 'Call 020 8036 1007, email info@qzengineers.co.uk or prepare a WhatsApp enquiry. QZ Engineers serves homes and businesses across all London boroughs.',
 };
-
 export const notFoundSeo = {
-  title: 'Page not found | HeatMechanics',
-  description: 'That page is not on the HeatMechanics site. Browse the services, read the guides, or start an enquiry.',
+  title: 'Page not found | QZ Engineers',
+  description: 'Browse QZ Engineers services across London, read the guides, or start an enquiry.',
 };
-
-export const homeServicesLead = 'These are the services HeatMechanics carries out: gas boiler repair and boiler servicing, heating repairs, boiler installation and replacement, landlord gas safety certificates (CP12), general plumbing, air conditioning installation and servicing, unvented cylinder installation, and commercial gas and catering equipment. If you are not sure which one fits, describe the job and we will point you to the right page.';
+export const homeServicesLead = 'Boilers, air conditioning, gas safety, plumbing, hot-water cylinders and underfloor heating — practical engineering for homes and businesses across London.';
 
 export function servicePath(slug: string) {
   return `/services/${slug}`;

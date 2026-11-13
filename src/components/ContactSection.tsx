@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react';
 import { EnquiryForm } from './EnquiryForm';
 import { Icon } from '../icons';
+import { ContactLinks } from './ContactLinks';
 
 export function ContactSection({
   headingLevel = 'h2',
@@ -22,6 +23,7 @@ export function ContactSection({
           <div className="eyebrow eyebrow-light"><span className="eyebrow-line" /> LET’S GET COMFORTABLE</div>
           <Heading>{title}</Heading>
           <p>{intro}</p>
+          <ContactLinks />
           <div className="contact-note"><span className="contact-note-icon"><Icon name="thermometer" size={19} /></span><span>Homes and businesses<br /><strong>Heating · Gas · Water · Air</strong></span></div>
         </div>
         <EnquiryForm serviceSlug={serviceSlug} />

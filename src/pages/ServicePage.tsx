@@ -21,6 +21,10 @@ export function ServicePage() {
           </div>
           <p>{service.intro}</p>
         </header>
+        {service.image && <figure className="service-photo" data-reveal>
+          <img {...service.image} loading="lazy" />
+          <figcaption>Equipment reference · illustration of this service</figcaption>
+        </figure>}
         <div className="prose" data-reveal>
           {service.paragraphs.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
           <h2>What to tell us</h2>
