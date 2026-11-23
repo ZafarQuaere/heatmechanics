@@ -52,7 +52,8 @@ Unknown paths/slugs render the existing not-found page. Header links target serv
 
 Business details live in `src/content/site.ts`:
 
-- Telephone and WhatsApp: **020 8036 1007**, `tel:+442080361007`, `https://wa.me/442080361007`.
+- Telephone: **020 8036 1007**, `tel:+442080361007`.
+- WhatsApp navigation and enquiry handoff: **+44 7424 082283**, `https://wa.me/447424082283`.
 - Email: **info@qzengineers.co.uk**.
 - Registered office: **80 Kingston Road, SW19 1LA**. This is not described as a walk-in branch.
 - Client's intended website: **qzengineers.co.uk**. Production domain configuration was not changed.

@@ -49,7 +49,7 @@ export function HomePage({ season }: { season: 'winter' | 'summer' }) {
         </div>
         <p className="services-lead" data-reveal>{homeServicesLead}</p>
         <div className="service-grid">
-          {services.map((service, index) => <ServiceCard key={service.slug} service={service} featured={index === 0} index={index} />)}
+          {services.map((service, index) => <ServiceCard key={service.slug} service={service} index={index} />)}
         </div>
         <div className="service-endnote" data-reveal><span className="endnote-line" /><p>Not sure where to start? <Link to="/contact">Tell us what’s going on <Icon name="arrow" size={14} /></Link></p></div>
       </section>

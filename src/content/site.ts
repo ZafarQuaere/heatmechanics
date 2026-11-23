@@ -42,10 +42,11 @@ export const business = {
   emailHref: 'mailto:info@qzengineers.co.uk',
   address: '80 Kingston Road, SW19 1LA',
   website: 'qzengineers.co.uk',
-  whatsappHref: 'https://wa.me/442080361007',
+  whatsappDisplay: '+44 7424 082283',
+  whatsappHref: 'https://wa.me/447424082283',
 };
 
-export const whatsapp = { display: business.phone, href: business.whatsappHref };
+export const whatsapp = { display: business.whatsappDisplay, href: business.whatsappHref };
 
 export const businessSchema = {
   '@context': 'https://schema.org',

@@ -1,5 +1,10 @@
 # Task log
 
+## 2026-11-23
+
+- Pointed WhatsApp navigation, the chat link and the enquiry handoff at +44 7424 082283. Calls still use 020 8036 1007.
+- Matched every service card to the dark featured style and reduced card size slightly.
+
 ## 2026-10-20
 
 - Added a fixed WhatsApp button on every page. It opens a chat with +44 7424 082283. Contact and guide copy now point to that chat instead of saying the site has no phone number.
