@@ -1,5 +1,9 @@
 # Task log
 
+## 2026-11-24
+
+- Added a pointer spotlight, a single light sweep, and a hover lift to the service cards. Touch and reduced-motion keep the cards still.
+
 ## 2026-11-23
 
 - Pointed WhatsApp navigation, the chat link and the enquiry handoff at +44 7424 082283. Calls still use 020 8036 1007.

@@ -131,13 +131,20 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 .section-heading h1, .section-heading h2, .feature-copy h2 { font-size: clamp(37px, 4.3vw, 57px); line-height: 1.08; letter-spacing: -.07em; font-weight: 600; margin: 22px 0 0; color: var(--ink-strong); }
 .section-heading > p { max-width: 320px; line-height: 1.8; color: var(--muted); font-size: 13px; margin: 0 2px 5px 0; }
 .service-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
-.service-card { background: var(--ink); color: white; border: 1px solid var(--ink); border-radius: 14px; min-height: 220px; padding: 16px 16px 14px; position: relative; display: flex; flex-direction: column; transition: transform .35s var(--ease), box-shadow .35s, border-color .35s, background-color .4s; }
-.service-card::after { content: ''; position: absolute; top: 0; right: 0; width: 72px; height: 72px; border-top: 1px solid rgba(255,255,255,.2); border-right: 1px solid rgba(255,255,255,.2); border-radius: 0 14px 0 64px; opacity: .6; pointer-events: none; }
-.service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 32px rgba(17,39,58,.18); border-color: color-mix(in srgb, var(--ink) 70%, white); }
+.service-card { --spot-x: 50%; --spot-y: 0px; --spot-alpha: 0; background: radial-gradient(160px circle at var(--spot-x) var(--spot-y), rgba(255, 173, 140, var(--spot-alpha)), transparent 68%), var(--ink); color: white; border: 1px solid var(--ink); border-radius: 14px; min-height: 220px; padding: 16px 16px 14px; position: relative; display: flex; flex-direction: column; overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s, border-color .35s; }
+.service-card::after { content: ''; position: absolute; z-index: 2; top: 0; right: 0; width: 72px; height: 72px; border-top: 1px solid rgba(255,255,255,.2); border-right: 1px solid rgba(255,255,255,.2); border-radius: 0 14px 0 64px; opacity: .6; pointer-events: none; }
+.service-card-sheen { position: absolute; z-index: 0; inset: 0; pointer-events: none; background: linear-gradient(105deg, transparent 36%, rgba(255,255,255,.18) 50%, transparent 64%); transform: translateX(-130%); }
+@media (hover: hover) and (pointer: fine) {
+  .service-card:hover, .has-reveal .service-card.is-visible:hover { --spot-alpha: .34; transform: translateY(-6px); box-shadow: 0 22px 40px rgba(17,39,58,.28); border-color: color-mix(in srgb, var(--ink) 70%, white); }
+  .service-card:hover .service-card-sheen { animation: service-sheen .75s var(--ease) forwards; }
+  .service-card:hover .service-icon { transform: rotate(-8deg) scale(1.08); }
+  .service-card:hover .service-arrow svg { transform: translateX(3px); }
+}
+@keyframes service-sheen { to { transform: translateX(130%); } }
+.service-card-top, .service-tag, .service-card h3, .service-card p, .service-arrow { position: relative; z-index: 1; }
 .service-card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
 .service-number { color: rgba(255,255,255,.48); font: 600 10px Manrope, sans-serif; letter-spacing: .1em; }
 .service-icon { display: grid; place-items: center; width: 36px; height: 36px; background: rgba(255,255,255,.12); color: #ff9b75; border-radius: 50%; transition: transform .3s var(--ease); }
-.service-card:hover .service-icon { transform: rotate(-8deg) scale(1.08); }
 .service-tag { color: #ffad8c; font-size: 8px; font-weight: 700; letter-spacing: .16em; margin-bottom: 7px; }
 .service-card h3 { color: white; font-size: 15px; line-height: 1.35; letter-spacing: -.035em; font-weight: 700; margin: 0 0 8px; max-width: 220px; }
 .service-card h3 a { color: inherit; }
@@ -441,4 +448,7 @@ h1, h2, h3 { font-family: Manrope, sans-serif; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .has-reveal [data-reveal] { opacity: 1 !important; transform: none !important; }
+  .service-card, .service-card:hover, .has-reveal .service-card.is-visible:hover { --spot-alpha: 0 !important; transform: none !important; }
+  .service-card:hover .service-icon, .service-card:hover .service-arrow svg { transform: none !important; }
+  .service-card-sheen { animation: none !important; opacity: 0; }
 }
